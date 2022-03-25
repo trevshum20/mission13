@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Bowler>
+
+
+<div class=" row m-1 p-1">
+    <div id="teams" class="col-2">
+        <h3 style="text-align:center">Teams</h3>
+        <a class="btn btn-block" style="text-align:center; background-color: lightgreen; color:white;" asp-action="Index">All Teams</a><br />
+
+        @foreach (Team t in ViewBag.Teams)
+        {
+
+            <a class="btn btn-block"
+               style="text-align:center; background-color: lightgreen; color:white;"
+               asp-action="Team"
+               asp-route-movieid="@t.TeamID">
+
+                @t.TeamName
+
+            </a>
+        }
+    </div>
+
+    <div class="col-9">
+        <h1 style="text-align: center">@ViewBag.Team.TeamName</h1>
+        <table class="table table-sm table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <td></td>
+                    <td style="font-size: 23px;">Name</td>
+                    <td></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-sm btn-secondary" style="background-color: turquoise;">Edit</a>
+                        </td>
+
+                        <td>@b.BowlerFirstName @b.BowlerMiddleInit @b.BowlerLastName</td>
+
+
+
+                        <td>
+                            <form method="post">
+                                <button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+
+        </table>
+        <a class="btn btn-sm" style="background-color: blue; color: white;">Add Player</a>
+    </div>
+</div>
+
+
+
+
+
