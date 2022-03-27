@@ -8,7 +8,7 @@
 <div class=" row m-1 p-1">
     <div id="teams" class="col-2">
         <h3 style="text-align:center">Teams</h3>
-        <a class="btn btn-block" style="text-align:center; background-color: lightgreen; color:white;" href="#">All Teams</a><br />
+        <a class="btn btn-block" style="text-align:center; background-color: lightpink; color:white;" href="#">All Teams</a><br />
 
         @foreach (Team t in ViewBag.Teams)
         {
@@ -42,17 +42,17 @@
                 {
                     <tr>
                         <td>
-                            <a class="btn btn-sm btn-secondary" style="background-color: turquoise;">Edit</a>
+                            <a asp-action="Edit" asp-route-bowlerid="@b.BowlerID" class="btn btn-sm btn-secondary" style="background-color: turquoise;">Edit</a>
                         </td>
 
                         <td>@b.BowlerFirstName @b.BowlerMiddleInit @b.BowlerLastName</td>
-                        <td>@b.BowlerAddress, @b.BowlerCity, @b.BowlerState, @b.BowlerZip</td>
+                        <td>@b.BowlerAddress @b.BowlerCity @b.BowlerState @b.BowlerZip</td>
                         <td>@b.BowlerPhoneNumber</td>
 
 
                         <td>
                             <form method="post">
-                                <button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button>
+                                <button asp-action="Delete" asp-route-bowlerid="@b.BowlerID" class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button>
                             </form>
                         </td>
 
@@ -64,7 +64,7 @@
 
 
         </table>
-        <a class="btn btn-sm" style="background-color: blue; color: white;" >Add Player</a>
+        <a class="btn btn-sm" style="background-color: blue; color: white;" asp-action="Add" >Add Bowler</a>
     </div>
 </div>
 

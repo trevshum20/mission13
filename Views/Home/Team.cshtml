@@ -12,15 +12,30 @@
 
         @foreach (Team t in ViewBag.Teams)
         {
+            @if (t == ViewBag.Team)
+            {
+                <a class="btn btn-block"
+                   style="text-align:center; background-color: lightpink; color:white;"
+                   asp-action="Team"
+                   asp-route-teamid="@t.TeamID"
+                   onclick="ModelState.Clear();">
 
-            <a class="btn btn-block"
-               style="text-align:center; background-color: lightgreen; color:white;"
-               asp-action="Team"
-               asp-route-movieid="@t.TeamID">
+                    @t.TeamName
 
-                @t.TeamName
+                </a>
+            }
+            else
+            {
+                <a class="btn btn-block"
+                   style="text-align:center; background-color: lightgreen; color:white;"
+                   asp-action="Team"
+                   asp-route-teamid="@t.TeamID"
+                   onclick="ModelState.Clear();">
 
-            </a>
+                    @t.TeamName
+
+                </a>
+            }
         }
     </div>
 
@@ -61,7 +76,7 @@
 
 
         </table>
-        <a class="btn btn-sm" style="background-color: blue; color: white;">Add Player</a>
+        <a class="btn btn-sm" style="background-color: blue; color: white;" asp-action="Add">Add Bowler</a>
     </div>
 </div>
 
