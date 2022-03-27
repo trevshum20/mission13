@@ -1,4 +1,6 @@
-﻿@{
+﻿@*Trevor Shumway, Mar 26*@
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,7 +9,7 @@
 
 <div class=" row m-1 p-1">
     <div id="teams" class="col-2">
-        <h3 style="text-align:center">Teams</h3>
+        <h3 style="text-align:center; ">Teams</h3>
         <a class="btn btn-block" style="text-align:center; background-color: lightpink; color:white;" href="#">All Teams</a><br />
 
         @foreach (Team t in ViewBag.Teams)
@@ -25,7 +27,7 @@
     </div>
 
     <div class="col-9">
-        <h1 style="text-align: center">All Teams</h1>
+        <h1 style="text-align: center; font-size: 50px;">All Teams</h1>
         <table class="table table-sm table-striped ">
             <thead class="thead-dark">
                 <tr>
@@ -52,7 +54,7 @@
 
                         <td>
                             <form method="post">
-                                <button asp-action="Delete" asp-route-bowlerid="@b.BowlerID" class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button>
+                                <button asp-action="Delete" asp-route-bowlerid="@b.BowlerID" class="btn btn-sm btn-danger" type="submit" value="Submit">Delete</button>
                             </form>
                         </td>
 

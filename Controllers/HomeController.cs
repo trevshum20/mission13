@@ -12,24 +12,22 @@ namespace Mission13.Controllers
 {
     public class HomeController : Controller
     {
-        private IBowlersRepository repo  {get; set;}
+        private IBowlersRepository repo  {get; set;}  // set up repo
 
-        //private ITeamsRepository bro { get; set; }
 
         public HomeController(IBowlersRepository yare)
         {
             repo = yare;
-            //bro = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() // display all bowlers
         {
             ViewBag.Teams = repo.Teams.ToList();
             var bowlers = repo.Bowlers.ToList();
             return View(bowlers);
         }
 
-        public IActionResult Team(int teamid)
+        public IActionResult Team(int teamid)  // display only bowlers from a specific team
         {
 
             ViewBag.Team = repo.Teams.Single(x => x.TeamID == teamid);
@@ -41,14 +39,14 @@ namespace Mission13.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Add() // add a bowler view
         {
             ViewBag.Teams = repo.Teams.ToList();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add(Bowler bl)
+        public IActionResult Add(Bowler bl) // add a bowler post
         {
 
             if (ModelState.IsValid)
@@ -65,7 +63,7 @@ namespace Mission13.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int bowlerid)
+        public IActionResult Edit(int bowlerid) // edit a bowler view
         {
             ViewBag.Teams = repo.Teams.ToList();
             var bowler = repo.Bowlers.Single(x => x.BowlerID == bowlerid);
@@ -73,14 +71,21 @@ namespace Mission13.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Bowler b)
+        public IActionResult Edit(Bowler b) // edit a bowler post
         {
-            repo.SaveChanges(b);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                repo.SaveChanges(b);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(b);
+            }
         }
 
         [HttpPost]
-        public IActionResult Delete(int bowlerid)
+        public IActionResult Delete(int bowlerid) // delete a bowler
         {
             repo.Delete(bowlerid);
             return RedirectToAction("Index");
